@@ -21,7 +21,7 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
-    "/add": {
+    "/animal/add": {
       "post": {
         "tags": ["Animals"],
         "description": "Create new animal in system",
@@ -46,7 +46,7 @@
         }
       }
     },
-    "/": {
+    "/animals": {
       "get": {
         "tags": ["Animals"],
         "summary": "Get all animals in system",
@@ -60,7 +60,7 @@
         }
       }
     },
-    "/{id}": {
+    "/animal/{id}": {
       "parameters": [
         {
           "title": "id",
