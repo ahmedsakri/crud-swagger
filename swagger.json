@@ -1,0 +1,144 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "My Animal Project CRUD",
+    "description": "My Animal Project Application API",
+    "license": {
+      "title": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "tags": [
+    {
+      "title": "Animals",
+      "description": "API for animals in the system"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/add": {
+      "post": {
+        "tags": ["Animals"],
+        "description": "Create new animal in system",
+        "parameters": [
+          {
+            "title": "animal",
+            "in": "body",
+            "description": "Animal that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Animal"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New animal is created",
+            "schema": {
+              "$ref": "#/definitions/Animal"
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "tags": ["Animals"],
+        "summary": "Get all animals in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Animals"
+            }
+          }
+        }
+      }
+    },
+    "/{id}": {
+      "parameters": [
+        {
+          "title": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of animal that we want to find",
+          "type": "integer"
+        }
+      ],
+      "delete": {
+        "summary": "Delete animal with given ID",
+        "tags": ["Animals"],
+        "responses": {
+          "200": {
+            "description": "Animal is deleted",
+            "schema": {
+              "$ref": "#/definitions/Animal"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update animal with give ID",
+        "tags": ["Animals"],
+        "parameters": [
+          {
+            "title": "animal",
+            "in": "body",
+            "description": "Animal with new values of properties",
+            "image": "https://swagger.io/img/logo_original.png",
+            "schema": {
+              "$ref": "#/definitions/updateAnimal"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Animal is updated",
+            "schema": {
+              "$ref": "#/definitions/Animal"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Animal": {
+      "required": ["title", "description", "image"],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "updateAnimal": {
+      "required": ["title", "image", "description"],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "Animals": {
+      "type": "array",
+      "$ref": "#/definitions/Animal"
+    }
+  }
+}
